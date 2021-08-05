@@ -1,6 +1,6 @@
 export const gender = {
-    "boy": {label: "男生", src: require("@/assets/images/boy.png"),},
-    "girl": {label: "女生", src: require("@/assets/images/girl.png")}
+    "boy": {label: "男生", src: require("@/assets/img/boy.png"),},
+    "girl": {label: "女生", src: require("@/assets/img/girl.png")}
 }
 
 export const formInfo = {
