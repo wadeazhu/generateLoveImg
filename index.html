@@ -67,7 +67,7 @@
             ctx.font = "40px MicrosoftYaHei"
             const label = formInfo[key].label
             const value = formValue[key].value
-            const text = `${label}:${value}`
+            const text = `${label}：${value}`
             ctx.fillStyle = "#666"
             const result = breakLinesForCanvas(text, 853,'40px MicrosoftYaHei');
             result.forEach((item, i) => {
@@ -155,8 +155,8 @@
         address: {type: "text", label: "户籍地", value: "湖北省武汉市"},
         home: {type: "text", label: "所在地", value: "阳逻经济开发区"},
         school: {type: "text", label: "学历",  value: "本科"},
-        height: {type: "text", label: "身高（cm）",  value: "179"},
-        weight: {type: "text", label: "体重（Kg）",  value: "77.5"},
+        height: {type: "text", label: "身高(cm)",  value: "179"},
+        weight: {type: "text", label: "体重(Kg)",  value: "77.5"},
         marriage: {type: "text", label: "婚姻状态",  value: "未婚"},
         house: {type: "text", label: "住房情况",  value: "有房有贷"},
         car: {type: "text", label: "是否有车",  value: "有车"},
