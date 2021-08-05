@@ -18,6 +18,7 @@
 
     <div class="mark" @click="markClick" v-show="markVisible">
       <canvas class="love" ref="love"></canvas>
+      <img class="love-img" :src="loveImgData" alt="">
       <br>
       <button class="downImgBtn" @click.stop="downImg">下载图片</button>
     </div>
@@ -39,7 +40,7 @@ export default {
       img: new Image(),
       sex: "boy",
       markVisible: false,
-
+      loveImgData: ""
     }
   },
   mounted() {
@@ -66,6 +67,8 @@ export default {
         this.setCanvasDrawImg(this.img, this.img.width, this.img.height)
         this.appendDateText()
         this.appendContentText(formValue, formInfo)
+        this.loveImgData = this.$refs.love.toDataURL("image/png")
+
       }
     },
 
@@ -106,7 +109,9 @@ export default {
     },
 
     downImg() {
-      downLoad(this.$refs.love.toDataURL("image/png"), `${curDate()}-${gender[this.sex].label}-${this.formValue['birthday'].value}.png`)
+      const url = this.$refs.love.toDataURL("image/png")
+      const fileName = `${curDate()}-${gender[this.sex].label}-${this.formValue['birthday'].value}.png`
+      downLoad(url, fileName)
     },
     markClick() {
       this.markVisible = false
@@ -160,8 +165,13 @@ button {
   padding: 12px;
 }
 
-canvas {
+canvas,.love-img {
   width: 470px;
+}
+.love-img {
+  position: absolute;
+  top: 0;
+  display: none;
 }
 .wrapper {
   position: relative;
@@ -184,6 +194,10 @@ canvas {
 }
 @media screen and (max-width: 768px) {
   canvas {
+    width: 100%;
+  }
+  .love-img {
+    display: block;
     width: 100%;
   }
 
