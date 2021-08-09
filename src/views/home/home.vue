@@ -121,7 +121,7 @@ export default {
 
     downImg() {
       const url = this.$refs.love.toDataURL("image/png")
-      const fileName = `${curDate()}-${gender[this.sex].label}-${this.formValue['birthday'].value}.png`
+      const fileName = `${curDate()}-${gender[this.sex].label}-${this.formValue['baseInfo'].value}.png`
       downLoad(url, fileName)
     },
     markClick() {
