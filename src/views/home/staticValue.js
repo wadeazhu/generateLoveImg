@@ -19,11 +19,11 @@ export const formInfo = {
     // requirements: {type: "textarea", label: "择偶要求", value: "有稳定工作，性格好三观正，热爱祖国 热爱生活，长相甜美可爱，好了，合适就是最重要的"},
 
     baseInfo: {type: "text", label: "基本信息"},
-    evaluation: {type: "text", label: "自我评价"},
-    family: {type: "text", label: "家庭介绍"},
-    hobby: {type: "text", label: "爱好"},
-    inner: {type: "text", label: "内心独白"},
-    requirements: {type: "text", label: "择偶要求"},
+    evaluation: {type: "textarea", label: "自我评价"},
+    family: {type: "textarea", label: "家庭介绍"},
+    hobby: {type: "textarea", label: "爱好"},
+    inner: {type: "textarea", label: "内心独白"},
+    requirements: {type: "textarea", label: "择偶要求"},
 }
 
 export const curDate = () => {
