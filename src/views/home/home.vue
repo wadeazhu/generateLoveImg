@@ -11,7 +11,7 @@
       <div v-for="(item, key, index) in formInfo" :key="index">
         <span>{{ item.label }}：</span>
         <input type="text" v-if="item.type === 'text'" :name="key"/>
-        <textarea v-if="item.type === 'textarea'" :name="key"/>
+        <textarea v-if="item.type === 'textarea'" :name="key" @change="textareaChange"/>
       </div>
       <button class="formSubmit" @click="submit">提交</button>
     </section>
@@ -115,6 +115,9 @@ export default {
     },
     markClick() {
       this.markVisible = false
+    },
+    textareaChange($event) {
+      $event.target.value = $event.target.value.replace(/\s+/g,"")
     }
   }
 }
