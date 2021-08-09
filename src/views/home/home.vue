@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import {formInfo, gender, curDate} from "./staticValue"
-import {breakLinesForCanvas, downLoad} from "./utils"
+import { formInfo, gender, curDate } from "./staticValue"
+import { breakLinesForCanvas, downLoad } from "./utils"
 
 export default {
   name: "home",
