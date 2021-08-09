@@ -95,9 +95,10 @@ export default {
         x: 116,
         y: 328
       }
+      let index = 0
       this.wxWrite = `${gender[this.sex].label}  `
-      for (let index = 0; index < Object.keys(formInfo).length; index++) {
-        const key = Object.keys(formInfo)[index]
+      for (let i = 0; i < Object.keys(formInfo).length; i++) {
+        const key = Object.keys(formInfo)[i]
 
         this.ctx.font = "40px MicrosoftYaHei"
         const label = formInfo[key].label
@@ -114,6 +115,7 @@ export default {
             origin.y = origin.y + 60
           }
         })
+        index++
       }
     },
 
