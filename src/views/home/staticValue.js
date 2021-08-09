@@ -4,19 +4,26 @@ export const gender = {
 }
 
 export const formInfo = {
-    birthday: {type: "text", label: "出生年月", value: "2021-01-01"},
-    address: {type: "text", label: "户籍地", value: "湖北省武汉市"},
-    home: {type: "text", label: "所在地", value: "阳逻经济开发区"},
-    school: {type: "text", label: "学历", value: "本科"},
-    height: {type: "text", label: "身高(cm)", value: "179"},
-    weight: {type: "text", label: "体重(Kg)", value: "77.5"},
-    marriage: {type: "text", label: "婚姻状态", value: "未婚"},
-    house: {type: "text", label: "住房情况", value: "有房有贷"},
-    car: {type: "text", label: "是否有车", value: "有车"},
-    work: {type: "text", label: "工作", value: "电力生产"},
-    income: {type: "text", label: "年收入", value: "15W"},
-    evaluation: {type: "textarea", label: "自我评价", value: "射手座男生，典型的乐观主义者，说话做事比较直接，喜欢美食，旅游，游泳和篮球"},
-    requirements: {type: "textarea", label: "择偶要求", value: "有稳定工作，性格好三观正，热爱祖国 热爱生活，长相甜美可爱，好了，合适就是最重要的"},
+    // birthday: {type: "text", label: "出生年月", value: "2021-01-01"},
+    // address: {type: "text", label: "户籍地", value: "湖北省武汉市"},
+    // home: {type: "text", label: "所在地", value: "阳逻经济开发区"},
+    // school: {type: "text", label: "学历", value: "本科"},
+    // height: {type: "text", label: "身高(cm)", value: "179"},
+    // weight: {type: "text", label: "体重(Kg)", value: "77.5"},
+    // marriage: {type: "text", label: "婚姻状态", value: "未婚"},
+    // house: {type: "text", label: "住房情况", value: "有房有贷"},
+    // car: {type: "text", label: "是否有车", value: "有车"},
+    // work: {type: "text", label: "工作", value: "电力生产"},
+    // income: {type: "text", label: "年收入", value: "15W"},
+    // evaluation: {type: "textarea", label: "自我评价", value: "射手座男生，典型的乐观主义者，说话做事比较直接，喜欢美食，旅游，游泳和篮球"},
+    // requirements: {type: "textarea", label: "择偶要求", value: "有稳定工作，性格好三观正，热爱祖国 热爱生活，长相甜美可爱，好了，合适就是最重要的"},
+
+    baseInfo: {type: "text", label: "基本信息"},
+    evaluation: {type: "text", label: "自我评价"},
+    family: {type: "text", label: "家庭介绍"},
+    hobby: {type: "text", label: "爱好"},
+    inner: {type: "text", label: "内心独白"},
+    requirements: {type: "text", label: "择偶要求"},
 }
 
 export const curDate = () => {

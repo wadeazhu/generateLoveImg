@@ -1,3 +1,17 @@
+export function copy(data) {
+    return new Promise(resolve => {
+        const input = document.createElement('input');
+        input.setAttribute('value', data);
+        document.body.appendChild(input);
+        input.select();
+        if (document.execCommand('copy')) {
+            document.execCommand('copy');
+            resolve('success');
+        }
+        document.body.removeChild(input);
+    });
+}
+
 export function breakLinesForCanvas(text, width, font, ctx) {
     const context = ctx;
     const result = [];

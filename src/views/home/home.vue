@@ -22,12 +22,14 @@
       <br>
       <button class="downImgBtn" @click.stop="downImg">下载图片</button>
     </div>
+
+    <p class="form">{{wxWrite}}</p>
   </section>
 </template>
 
 <script>
-import { formInfo, gender, curDate } from "./staticValue"
-import { breakLinesForCanvas, downLoad } from "./utils"
+import {formInfo, gender, curDate} from "./staticValue"
+import {breakLinesForCanvas, copy, downLoad} from "./utils"
 
 export default {
   name: "home",
@@ -40,7 +42,8 @@ export default {
       img: new Image(),
       sex: "boy",
       markVisible: false,
-      loveImgData: ""
+      loveImgData: "",
+      wxWrite: ""
     }
   },
   mounted() {
@@ -58,6 +61,7 @@ export default {
 
       this.markVisible = true
       this.generateImg(this.sex, this.formValue, this.formInfo)
+      copy(this.wxWrite)
       console.log(this.formValue)
     },
 
@@ -91,11 +95,16 @@ export default {
         x: 116,
         y: 328
       }
-      Object.keys(formInfo).forEach((key, index) => {
+      this.wxWrite = `${gender[this.sex].label}  `
+      for (let index = 0; index < Object.keys(formInfo).length; index++) {
+        const key = Object.keys(formInfo)[index]
+
         this.ctx.font = "40px MicrosoftYaHei"
         const label = formInfo[key].label
         const value = formValue[key].value
         const text = `${label}：${value}`
+        if(!value) continue
+        this.wxWrite += `${value} `
         this.ctx.fillStyle = "#666"
         const result = breakLinesForCanvas(text, 853, '40px MicrosoftYaHei', this.ctx);
         result.forEach((item, i) => {
@@ -105,7 +114,7 @@ export default {
             origin.y = origin.y + 60
           }
         })
-      })
+      }
     },
 
     downImg() {
@@ -117,7 +126,7 @@ export default {
       this.markVisible = false
     },
     textareaChange($event) {
-      $event.target.value = $event.target.value.replace(/\s+/g,"")
+      $event.target.value = $event.target.value.replace(/\s+/g, "")
     }
   }
 }
@@ -168,14 +177,16 @@ button {
   padding: 12px;
 }
 
-canvas,.love-img {
+canvas, .love-img {
   width: 470px;
 }
+
 .love-img {
   position: absolute;
   top: 0;
   display: none;
 }
+
 .wrapper {
   position: relative;
   padding: 7px;
@@ -195,10 +206,12 @@ canvas,.love-img {
   width: 470px;
   display: inline-block;
 }
+
 @media screen and (max-width: 768px) {
   canvas {
     width: 100%;
   }
+
   .love-img {
     display: block;
     width: 100%;
