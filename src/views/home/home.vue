@@ -4,13 +4,14 @@
       <!--      <div><span>是否生成默认</span><input type="checkbox" name="defaultValue" checked="checked"/></div>-->
       <div>
         <span>性别</span>
-        <input type="radio" name="sex" v-model="sex" value="boy">男
-        <input type="radio" name="sex" v-model="sex" value="girl">女
+        <input type="radio" name="sex" v-model="sex" value="boy" @change="sexChange">男
+        <input type="radio" name="sex" v-model="sex" value="girl" @change="sexChange">女
       </div>
 
       <div v-for="(item, key, index) in formInfo" :key="index">
         <span>{{ item.label }}：</span>
-        <input type="text" v-if="item.type === 'text'" :name="key"/>
+        <input type="text" v-if="item.type === 'text'" :name="key" :value="item.value" :ref="key"
+               @change="textChange($event, key)"/>
         <textarea v-if="item.type === 'textarea'" :name="key" @change="textareaChange"/>
       </div>
       <button class="formSubmit" @click="submit">提交</button>
@@ -23,7 +24,7 @@
       <button class="downImgBtn" @click.stop="downImg">下载图片</button>
     </div>
 
-    <p class="form">{{wxWrite}}</p>
+    <p class="form">{{ wxWrite }}</p>
   </section>
 </template>
 
@@ -48,6 +49,7 @@ export default {
   },
   mounted() {
     this.ctx = this.$refs.love.getContext("2d")
+    this.sexChange()
   },
   methods: {
     submit() {
@@ -104,7 +106,7 @@ export default {
         const label = formInfo[key].label
         const value = formValue[key].value
         const text = `${label}：${value}`
-        if(!value) continue
+        if (!value) continue
         this.wxWrite += `${value} `
         this.ctx.fillStyle = "#666"
         const result = breakLinesForCanvas(text, 853, '40px MicrosoftYaHei', this.ctx);
@@ -129,6 +131,94 @@ export default {
     },
     textareaChange($event) {
       $event.target.value = $event.target.value.replace(/\s+/g, "")
+    },
+    sexChange() {
+      console.log(1)
+      this.setCondition()
+    },
+
+    textChange($event, key) {
+      if ("baseInfo" === key) {
+        this.setCondition()
+      }
+    },
+
+    setCondition() {
+      const age = Number(this.$refs.baseInfo[0].value)
+      let house, cat, income
+      let house1, house2, cat1, cat2, income1, income2, income3
+      // 如果是男生
+      if (this.sex === "boy") {
+        // 如果没有填写基本信息
+        house1 = 500
+        house2 = 500
+        cat1 = 400
+        cat2 = 600
+        income1 = 300
+        income2 = 600
+        income3 = 100
+        if (age) {
+          if (age > 25) {
+            house1 = 700
+            house2 = 300
+            cat1 = 400
+            cat2 = 600
+            income1 = 200
+            income2 = 700
+            income3 = 100
+          } else if (age > 30) {
+            house1 = 850
+            house2 = 150
+            cat1 = 700
+            cat2 = 300
+            income1 = 500
+            income2 = 750
+            income3 = 200
+
+          }
+        }
+      } else {
+        house1 = 200
+        house2 = 800
+        cat1 = 200
+        cat2 = 800
+        income1 = 700
+        income2 = 250
+        income3 = 50
+        if (age) {
+          if (age > 25) {
+            house1 = 200
+            house2 = 800
+            cat1 = 300
+            cat2 = 700
+            income1 = 700
+            income2 = 250
+            income3 = 50
+          } else if (age > 30) {
+            house1 = 200
+            house2 = 800
+            cat1 = 500
+            cat2 = 500
+            income1 = 700
+            income2 = 250
+            income3 = 50
+          }
+        }
+      }
+
+      house = [...new Array(house1).fill("已经购房"), ...new Array(house2).fill("暂时没有购房")]
+      cat = [...new Array(cat1).fill("已经购车"), ...new Array(cat2).fill("暂时没有购车")]
+      income = [
+        ...new Array(income1).fill("").map(() => Math.floor(Math.random() * 8) + 8),
+        ...new Array(income2).fill("").map(() => Math.floor(Math.random() * 5) + 15),
+        ...new Array(income3).fill("").map(() => Math.floor(Math.random() * 30) + 20),
+      ]
+
+      setTimeout(() => {
+        this.$refs.house[0].value = house[Math.floor(Math.random() * house.length)]
+        this.$refs.car[0].value = cat[Math.floor(Math.random() * cat.length)]
+        this.$refs.income[0].value = income[Math.floor(Math.random() * income.length)] + "W"
+      })
     }
   }
 }
