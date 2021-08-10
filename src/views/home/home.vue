@@ -31,6 +31,7 @@
 <script>
 import {formInfo, gender, curDate} from "./staticValue"
 import {breakLinesForCanvas, copy, downLoad} from "./utils"
+import { randomLoveText } from "./loveText"
 
 export default {
   name: "home",
@@ -73,6 +74,7 @@ export default {
         this.setCanvasDrawImg(this.img, this.img.width, this.img.height)
         this.appendDateText()
         this.appendContentText(formValue, formInfo)
+        this.appendFooterText(randomLoveText())
         this.loveImgData = this.$refs.love.toDataURL("image/png")
 
       }
@@ -119,6 +121,28 @@ export default {
         })
         index++
       }
+    },
+
+    appendFooterText(text) {
+      this.ctx.font = "45px MicrosoftYaHei"
+      this.ctx.fillStyle = "#f44336"
+      this.ctx.font = 'italic bold 45px Arial,sans-serif'
+      // 1587 标准
+      this.ctx.fillText("同城相亲", 100, 1577)
+      this.ctx.font = "30px MicrosoftYaHei"
+      this.ctx.fillStyle = "#fff"
+      text = text.trim()
+      const result = breakLinesForCanvas(text+"❤", 670, '30px MicrosoftYaHei', this.ctx);
+      // 1635 标准
+      let origin = {
+        x: 100,
+        y: ((81 - result.length *40) / 2) + 1645
+      }
+      console.log(origin.y)
+      result.forEach((item, i) => {
+        this.ctx.fillText(item, origin.x, origin.y + i * 40)
+      })
+      console.log(text)
     },
 
     downImg() {

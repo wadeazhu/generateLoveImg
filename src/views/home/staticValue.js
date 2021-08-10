@@ -41,3 +41,31 @@ export const curDate = () => {
     const date = new Date().getDate()
     return `${year}.${month}.${date}`
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
