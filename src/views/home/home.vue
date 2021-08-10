@@ -10,8 +10,8 @@
 
       <div v-for="(item, key, index) in formInfo" :key="index">
         <span>{{ item.label }}：</span>
-        <input type="text" v-if="item.type === 'text'" :name="key" :value="item.value" :ref="key"
-               @change="textChange($event, key)"/>
+        <input type="text" v-if="item.type === 'text' && item.value" :name="key" :value="item.value" :ref="key" />
+        <input type="text" v-if="item.type === 'text' && !item.value" @change="textChange($event, key)" :name="key" :ref="key" />
         <textarea v-if="item.type === 'textarea'" :name="key" @change="textareaChange"/>
       </div>
       <button class="formSubmit" @click="submit">提交</button>
@@ -214,11 +214,9 @@ export default {
         ...new Array(income3).fill("").map(() => Math.floor(Math.random() * 30) + 20),
       ]
 
-      setTimeout(() => {
-        this.$refs.house[0].value = house[Math.floor(Math.random() * house.length)]
-        this.$refs.car[0].value = cat[Math.floor(Math.random() * cat.length)]
-        this.$refs.income[0].value = income[Math.floor(Math.random() * income.length)] + "W"
-      })
+      this.$refs.house[0].value = house[Math.floor(Math.random() * house.length)]
+      this.$refs.car[0].value = cat[Math.floor(Math.random() * cat.length)]
+      this.$refs.income[0].value = income[Math.floor(Math.random() * income.length)] + "W"
     }
   }
 }
